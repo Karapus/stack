@@ -6,7 +6,7 @@ SRCS=main.cpp stack.cpp
 OBJS=$(SRCS:.cpp=.o)
 EXEC=a.out
 
-all: $(SRCS) $(EXEC)
+all: clear $(SRCS) $(EXEC)
 
 $(EXEC): $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $@

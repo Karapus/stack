@@ -4,17 +4,18 @@
 
 int main()
 {
-        Stack<char> *stk = (Stack<char> *) malloc(sizeof(Stack<char>));
+        Stack<char> *stk = new Stack<char>;
 	stk->Init();
         int c = '\0';
         while ((c = getchar()) != '\n')
                 stk->push(c - '0');
 
         putchar('\n');
+	stk->dump();
 
-        while (c = stk->pop())
-                printf("%d\n", c);
+//        while (c = stk->pop())
+//        	printf("%d\n", c);
 	
 	stk->Delete();
-	free(stk);
+	delete stk;
 }
