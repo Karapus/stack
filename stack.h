@@ -25,7 +25,7 @@ class Stack
 	public:	
 		bool push(T val);
 		T pop(void);
-		void dump();
+		void dump(void (*print) (const T *) = nullptr);
 		void printError();
 		bool Init(size_t capacity = 1);
 		void Delete();
@@ -33,4 +33,5 @@ class Stack
 
 static Hashval getHash(const void *beg, size_t len, size_t msize);
 
+#include "stack.cpp"
 #endif

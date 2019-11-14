@@ -1,6 +1,11 @@
 #include <stdio.h>
 
-#include "stack.cpp"
+#include "stack.h"
+
+void print(const char *ptr)
+{
+	printf("%c\n", *ptr);
+}
 
 int main()
 {
@@ -8,10 +13,10 @@ int main()
 	stk->Init();
         int c = '\0';
         while ((c = getchar()) != '\n')
-                stk->push(c - '0');
+                stk->push(c);
 
         putchar('\n');
-	stk->dump();
+	stk->dump(print);
 
 //        while (c = stk->pop())
 //        	printf("%d\n", c);

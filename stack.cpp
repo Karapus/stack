@@ -1,4 +1,4 @@
-#include "stack.h"
+//#include "stack.h"
 
 template <typename T>
 bool Stack<T>::push(T val)
@@ -91,14 +91,15 @@ void Stack<T>::Delete()
 {
 	free(this->data_);
 	this->data_ = nullptr;
+	this->datahash_ = 0;
 	this->size_ = 0;
 	this->capacity_ = 0;
 }
 
 template <typename T>
-void Stack<T>::dump()
+void Stack<T>::dump(void (*print) (const T *))
 {
-	printf("Stack %p dump:\n", this);
+	printf("\033[45;1;1mStack %p dump:\033[0m\n\n", this);
 	
 	if (OK())
 	{
@@ -107,5 +108,22 @@ void Stack<T>::dump()
 		puts("\033[0m");
 	}
 
+	printf("\033[0;32mSize is	\t\t%lu\033[0m\n", size_);
+	printf("\033[0;33mCapasity is	  \t%lu\033[0m\n", capacity_);
+        printf("\033[0;34mData hash is	  \t%lX\033[0m\n", datahash_);
 
+	if (print)
+	{
+		printf("\nData dump(by user-defined function):\n");
+		for (size_t i = 0; i < size_; i++)
+		{
+			printf("[%lu] == ", i);
+			print(&data_[i]);
+		}
+	}
+
+	printf("\nData dump (in hexadecimal):\n");
+	for (size_t i = 0; i < capacity_; i++)
+		printf("[%lu] == %X\n", i, data_[i]);
+	putchar('\n');
 }
