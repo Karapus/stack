@@ -5,23 +5,26 @@
 #include <assert.h>
 #include <limits.h>
 #include <stdio.h>
+#include <string.h>
 
 typedef long unsigned Hashval;
 
-enum Errcode {NOERR, NPTR, NCAP, FULL, HASH};
+enum Errcode {NOERR, NPTR, NCAP, FULL, HASH, SCAN, DCAN};
 
 template <typename T>
 class Stack
 {
 	private:
-		//Hashval can1_;
+		char can1_;
 		T *data_;
 		Hashval datahash_;
 	        size_t size_;
 	        size_t capacity_;
-		//Hashval can2_;
+		Hashval stackhash_;
+		char can2_;
 
 		Errcode OK(void);
+		bool resize(void);
 	public:	
 		bool push(T val);
 		T pop(void);
