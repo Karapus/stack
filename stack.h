@@ -2,10 +2,10 @@
 #define STACK
 
 #include <stdlib.h>
-#include <assert.h>
 #include <limits.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 typedef long unsigned Hashval;
 

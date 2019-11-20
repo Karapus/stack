@@ -103,6 +103,7 @@ void Stack<T>::printError()
 template <typename T>
 bool Stack<T>::Init(size_t capacity)
 {
+	srand(time(0));
 	if (!capacity)	return false;
 	if (!this)	return false;
 
@@ -155,10 +156,10 @@ void Stack<T>::dump(void (*print) (const T *))
 		}
 	}
 	
-	printf("\n\033[0;33mData canary is \t%X\033[0m\n", data_[-1]);
+	printf("\n\033[0;33mData canary is \t%X\033[0m\n", data_[-1] & ~(2<<(sizeof(T) * 8))));
 
 	printf("Data dump (in hexadecimal):\n");
 	for (size_t i = 0; i < capacity_; i++)
 		printf("[%lu] == %X\n", i, data_[i]);
-	printf("\033[0;33mData canary is \t%X\033[0m\n", data_[capacity_]);
+	printf("\033[0;33mData canary is \t%X\033[0m\n", data_[capacity_] & ~(2<<(sizeof(T) * 8)));
 }
